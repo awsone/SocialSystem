@@ -39,6 +39,7 @@ public class RecruitController {
 	 */
 	@RequestMapping(value = "/search/recommend", method = RequestMethod.GET)
 	public Result recommend() {
+		System.out.println("输出新的记录");
 		return new Result(true, StatusCode.OK, "查询成功", recruitService.recommend());
 	}
 
