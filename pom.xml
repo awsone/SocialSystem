@@ -11,6 +11,11 @@
         <module>tensquare_common</module>
         <module>tensquare_base</module>
         <module>tensquare_qa</module>
+        <module>tensquare_article</module>
+        <module>tenth_recruit</module>
+        <module>tensquare_gathering</module>
+        <module>tensquare_spit</module>
+
     </modules>
     <packaging>pom</packaging>
 
@@ -45,6 +50,15 @@
             <artifactId>lombok</artifactId>
             <version>1.16.20</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>4.3.0</version>
         </dependency>
     </dependencies>
 
