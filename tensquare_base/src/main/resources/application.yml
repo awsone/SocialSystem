@@ -11,3 +11,11 @@ spring:
   jpa:
     database: mysql
     show-sql: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:6868/eureka/
+  #部署到服务器以后，允许跨域访问
+  instance:
+    prefer‐ip‐address: true

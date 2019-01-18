@@ -28,7 +28,7 @@ public class LabelController {
 
 	@GetMapping
 	public Result findAll() {
-		System.out.println("调用该方法");
+		System.out.println("调用该方法进行测试");
 		return new Result(true, StatusCode.OK, "查询成功", labelService.findAll());
 	}
 

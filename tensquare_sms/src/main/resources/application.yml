@@ -1,0 +1,17 @@
+server:
+  port: 9009
+spring:
+  application:
+    name: tensquare_sms
+  rabbitmq:
+    host: 192.168.5.129
+
+#https://usercenter.console.aliyun.com/?spm=5176.12207334.0.0.490b1cbebvSfrj#/manage/ak
+aliyun:
+  sms:
+    accessKeyId: LTAIgUdLcqZEQrHF
+    accessKeySecret: pCuLcV0QO9EsFVx09A05mnuH8ihdTj
+    #模板名称
+    template_code: 这是模板名称
+    #标签名称
+    sign_name 这是标签名称:

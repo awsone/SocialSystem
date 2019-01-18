@@ -1,22 +1,17 @@
 package com.tensquare.qa.controller;
 
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
+import com.tensquare.qa.client.BaseClient;
 import com.tensquare.qa.pojo.Problem;
 import com.tensquare.qa.service.ProblemService;
-
 import entity.PageResult;
 import entity.Result;
 import entity.StatusCode;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * 控制器层
@@ -31,46 +26,61 @@ public class ProblemController {
 	@Autowired
 	private ProblemService problemService;
 
+	@Autowired
+	private HttpServletRequest request;
+
+	@Autowired
+	private BaseClient baseClient;
+
+	@GetMapping("/label/{labelId}")
+	public Result findByLabelId(@PathVariable String labelId) {
+		Result result = baseClient.findById(labelId);
+		return result;
+	}
+
 	/**
 	 * 获取最新列表
+	 *
+	 * @param
+	 * @return
 	 * @author zhangchuan
 	 * @Date 2019/1/4 - 16:50
-	 * @Description: 
-	 * @param 
-	 * @return 
+	 * @Description:
 	 */
-	@RequestMapping(value="/newlist/{labelId}/{page}/{size}",method=RequestMethod.GET)
-	public Result newList(@PathVariable(value="labelId") String labelId ,@PathVariable int page,@PathVariable int size) {
+	@RequestMapping(value = "/newlist/{labelId}/{page}/{size}", method = RequestMethod.GET)
+	public Result newList(@PathVariable(value = "labelId") String labelId, @PathVariable int page, @PathVariable int size) {
 		Page<Problem> pageData = problemService.newList(labelId, page, size);
-		return new Result(true,StatusCode.OK,"查询成功",new PageResult<Problem>(pageData.getSize(),pageData.getContent()));
+		return new Result(true, StatusCode.OK, "查询成功", new PageResult<Problem>(pageData.getSize(), pageData.getContent()));
 	}
 
 	/**
 	 * 获取最热列表
+	 *
+	 * @param
+	 * @return
 	 * @author zhangchuan
 	 * @Date 2019/1/4 - 16:50
 	 * @Description:
-	 * @param
-	 * @return
 	 */
-	@RequestMapping(value="/hotlist/{labelId}/{page}/{size}",method=RequestMethod.GET)
-	public Result hotList(@PathVariable(value="labelId") String labelId ,@PathVariable int page,@PathVariable int size) {
+	@RequestMapping(value = "/hotlist/{labelId}/{page}/{size}", method = RequestMethod.GET)
+	public Result hotList(@PathVariable(value = "labelId") String labelId, @PathVariable int page, @PathVariable int size) {
 		Page<Problem> pageData = problemService.hotList(labelId, page, size);
-		return new Result(true,StatusCode.OK,"查询成功",new PageResult<Problem>(pageData.getSize(),pageData.getContent()));
+		return new Result(true, StatusCode.OK, "查询成功", new PageResult<Problem>(pageData.getSize(), pageData.getContent()));
 	}
 
 	/**
 	 * 获取最热列表
+	 *
+	 * @param
+	 * @return
 	 * @author zhangchuan
 	 * @Date 2019/1/4 - 16:50
 	 * @Description:
-	 * @param
-	 * @return
 	 */
-	@RequestMapping(value="/waitlist/{labelId}/{page}/{size}",method=RequestMethod.GET)
-	public Result waitList(@PathVariable(value="labelId") String labelId ,@PathVariable int page,@PathVariable int size) {
+	@RequestMapping(value = "/waitlist/{labelId}/{page}/{size}", method = RequestMethod.GET)
+	public Result waitList(@PathVariable(value = "labelId") String labelId, @PathVariable int page, @PathVariable int size) {
 		Page<Problem> pageData = problemService.waitList(labelId, page, size);
-		return new Result(true,StatusCode.OK,"查询成功",new PageResult<Problem>(pageData.getSize(),pageData.getContent()));
+		return new Result(true, StatusCode.OK, "查询成功", new PageResult<Problem>(pageData.getSize(), pageData.getContent()));
 	}
 
 	/**
@@ -127,6 +137,10 @@ public class ProblemController {
 	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public Result add(@RequestBody Problem problem) {
+		String token = (String) request.getAttribute("claims_user");
+		if (token == null || "".equals(token)) {
+			return new Result(false, StatusCode.ACCESSERROR, "权限不足");
+		}
 		problemService.add(problem);
 		return new Result(true, StatusCode.OK, "增加成功");
 	}
