@@ -10,6 +10,7 @@ import io.netty.util.internal.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import com.tensquare.user.pojo.User;
@@ -41,6 +42,19 @@ public class UserController {
 
 
 	/**
+	 * @return
+	 * @parame
+	 * @Description: 更新好友粉丝数和用户关注数
+	 * @author zhangchuan
+	 * @Date 2019/1/21 - 17:02
+	 */
+	@PutMapping("/{userid}/{friendid}/{x}")
+	public void updatFanscountAndFollowcount(@PathVariable String userid, @PathVariable String friendid, @PathVariable int x) {
+		userService.updateFanscountAndFollowcount(x, userid, friendid);
+
+	}
+
+	/**
 	 * 用户登陆
 	 *
 	 * @param
@@ -52,10 +66,14 @@ public class UserController {
 	@PostMapping("/login")
 	public Result login(@RequestBody User user) {
 		User loginUser = userService.login(user);
+		System.out.println(loginUser);
 		if (loginUser == null) {
 			return new Result(false, StatusCode.LOGINERROR, "登陆失败，请重新登陆或者进行注册");
 		}
-		String token = jwtUtil.createJWT(user.getId(), user.getMobile(), "user");
+		System.out.println("当前用户登陆id：" + loginUser.getId());
+		System.out.println("当前用户登陆电话：" + loginUser.getMobile());
+
+		String token = jwtUtil.createJWT(loginUser.getId(), loginUser.getMobile(), "user");
 		HashMap<Object, Object> map = MapUtil.newHashMap(2);
 		map.put("token", token);
 		map.put("role", "user");

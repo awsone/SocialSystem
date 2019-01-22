@@ -1,21 +1,16 @@
 server:
-  port: 9003
+  port: 9010
 spring:
   application:
-    name: tensquare-qa #指定服务名
+    name: tensquare-friend
   datasource:
-    driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.5.129:3306/tensquare_qa?characterEncoding=UTF8
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.5.129:3306/tensquare_friend?characterEncoding=utf-8
     username: root
     password: root
   jpa:
-    database: MySQL
+    database: mysql
     show-sql: true
-jwt:
-  config:
-    key: zhangchuan
-
-
 eureka:
   client:
     service-url:
@@ -23,7 +18,7 @@ eureka:
   #部署到服务器以后，允许跨域访问
   instance:
     prefer‐ip‐address: true
-#开启熔断器
-feign:
-  hystrix:
-    enabled: true
+jwt:
+  config:
+    key: zhangchuan
+

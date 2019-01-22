@@ -1,5 +1,7 @@
 package com.tensquare.user.pojo;
 
+import lombok.ToString;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -12,6 +14,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "tb_user")
+@ToString
 public class User implements Serializable {
 
 	@Id
