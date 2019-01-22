@@ -25,6 +25,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import org.springframework.transaction.annotation.Transactional;
 import util.IdWorker;
 
 import com.tensquare.user.dao.UserDao;
@@ -252,10 +253,27 @@ public class UserService {
 	public User login(User user) {
 		//根据电话号码查询用户
 		User userLogin = userDao.findByMobile(user.getMobile());
+		System.out.println("userLogin" + userLogin);
 		if (userLogin != null && bp.matches(user.getPassword(), userLogin.getPassword())) {
 			//表示登陆成功
-			return user;
+			return userLogin;
 		}
 		return null;
 	}
+
+	/**
+	 * @param
+	 * @return
+	 * @Description: 更新粉丝数
+	 * @author zhangchuan
+	 * @Date 2019/1/21 - 17:08
+	 */
+	@Transactional
+	public void updateFanscountAndFollowcount(int x, String userid, String friendid) {
+		//更新好友的粉丝数
+		userDao.updateFanscount(x, friendid);
+		//更新自己的关注数
+		userDao.updataFollowcount(x, userid);
+	}
+
 }

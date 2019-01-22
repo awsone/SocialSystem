@@ -20,7 +20,7 @@ spring:
 jwt:
   config:
     key: zhangchuan
-    ttl: 3600000
+    ttl: 3600000   #设置过期时间一个小时  60*60*1000
 
 eureka:
   client:

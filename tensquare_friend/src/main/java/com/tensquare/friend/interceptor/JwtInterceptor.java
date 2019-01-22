@@ -1,7 +1,7 @@
-package com.tensquare.user.interceptor;
+package com.tensquare.friend.interceptor;
 
+import feign.Client;
 import io.jsonwebtoken.Claims;
-import org.hibernate.annotations.NaturalId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -35,13 +35,14 @@ public class JwtInterceptor implements HandlerInterceptor {
 				//对token进行解析,验证是否正确
 				try {
 					Claims claims = jwtUtil.parseJWT(token);
+					System.out.println("claims" + claims);
 					String role = (String) claims.get("roles");
 					//设置管理员或者普通用户标签
 					if (role != null || role.equals("admin")) {
-						request.setAttribute("claims_admin", token);
+						request.setAttribute("claims_admin", claims);
 					}
 					if (role != null || role.equals("user")) {
-						request.setAttribute("claims_user", token);
+						request.setAttribute("claims_user", claims);
 					}
 				} catch (Exception e) {
 					throw new RuntimeException("令牌错误！");
