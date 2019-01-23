@@ -14,7 +14,7 @@
         <module name="tensquare_eureka" />
         <module name="tensquare_friend" />
         <module name="tensquare_gathering" />
-        <module name="tensquare_manage" />
+        <module name="tensquare_manager" />
         <module name="tensquare_qa" />
         <module name="tensquare_search" />
         <module name="tensquare_sms" />
@@ -34,9 +34,7 @@
       <module name="tensquare_eureka" target="1.8" />
       <module name="tensquare_friend" target="1.8" />
       <module name="tensquare_gathering" target="1.8" />
-      <module name="tensquare_manage" target="1.8" />
       <module name="tensquare_manager" target="1.8" />
-      <module name="tensquare_manager1" target="1.8" />
       <module name="tensquare_parent" target="1.8" />
       <module name="tensquare_qa" target="1.8" />
       <module name="tensquare_search" target="1.8" />
@@ -58,9 +56,7 @@
       <module name="tensquare_eureka" options="-parameters" />
       <module name="tensquare_friend" options="-parameters" />
       <module name="tensquare_gathering" options="-parameters" />
-      <module name="tensquare_manage" options="-parameters" />
       <module name="tensquare_manager" options="-parameters" />
-      <module name="tensquare_manager1" options="-parameters" />
       <module name="tensquare_qa" options="-parameters" />
       <module name="tensquare_search" options="-parameters" />
       <module name="tensquare_sms" options="-parameters" />
