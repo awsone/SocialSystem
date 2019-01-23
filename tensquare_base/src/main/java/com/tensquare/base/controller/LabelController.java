@@ -1,11 +1,16 @@
 package com.tensquare.base.controller;
 
+import com.netflix.discovery.converters.Auto;
 import com.tensquare.base.pojo.Label;
 import com.tensquare.base.service.LabelService;
 import entity.PageResult;
 import entity.Result;
 import entity.StatusCode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +27,8 @@ import java.util.Map;
 @RestController
 @CrossOrigin
 @RequestMapping("/label")
+//添加配置用于自定义文件修改后可以自动重新编译
+@RefreshScope
 public class LabelController {
 
 	@Autowired
@@ -30,11 +37,18 @@ public class LabelController {
 	@Autowired
 	private HttpServletRequest request;
 
+	@Value("${ips}")
+	private String ips;
+
+	/** logger */
+	private static final Logger log = LoggerFactory.getLogger(LabelController.class);
+
 	@GetMapping
 	public Result findAll() {
 		//获取头信息
 		String authorization = request.getHeader("Authorization");
 		System.out.println("authorization:" + authorization);
+		log.info("新添加的属性ips:"+ips);
 		return new Result(true, StatusCode.OK, "查询成功", labelService.findAll());
 	}
 

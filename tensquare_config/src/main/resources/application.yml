@@ -11,3 +11,12 @@ spring:
           uri: https://gitee.com/awsone/social_system_profile.git
           username: 1243121947@qq.com
           password: zc1243121947
+  #配置rabbitmq
+  rabbitmq:
+    host: 192.168.5.129
+  #暴露触发消息总线的地址
+management: #暴露触发消息总线的地址
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh

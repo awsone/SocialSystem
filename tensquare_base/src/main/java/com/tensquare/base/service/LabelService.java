@@ -3,6 +3,8 @@ package com.tensquare.base.service;
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader;
 import com.tensquare.base.dao.LabelDao;
 import com.tensquare.base.pojo.Label;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.data.domain.Page;
@@ -38,8 +40,11 @@ public class LabelService {
 	@Autowired
 	private IdWorker idWorker;
 
+	/** logger */
+	private static final Logger log = LoggerFactory.getLogger(LabelService.class);
+
 	public List<Label> findAll() {
-		System.out.println("调用该方法————————————————");
+		log.info("调用findAll()方法");
 		return labelDao.findAll();
 	}
 
