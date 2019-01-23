@@ -11,7 +11,7 @@ import util.JwtUtil;
  * @Description:
  * @Author zhangchuan
  * @Date 2019/1/22 - 15:49
- * @Version 1.0
+ * @Version 1.0 000000000000
  */
 @SpringBootApplication
 @EnableEurekaClient

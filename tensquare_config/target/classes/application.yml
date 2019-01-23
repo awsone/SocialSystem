@@ -1,0 +1,13 @@
+server:
+  port: 12000
+spring:
+  application:
+    name: tensquare-config
+  cloud:
+    config:
+      server:
+        git:
+          #配置git地址
+          uri: https://gitee.com/awsone/social_system_profile.git
+          username: 1243121947@qq.com
+          password: zc1243121947
