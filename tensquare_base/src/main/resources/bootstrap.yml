@@ -3,7 +3,7 @@
 spring:
   cloud:
     config:
-      name: eureka   # - 前半部分
+      name: base   # - 前半部分
       profile: dev  # - 后半部分
       label: master  # 分支
       uri: http://127.0.0.1:12000  #地址

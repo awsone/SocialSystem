@@ -22,5 +22,5 @@ public interface EnterpriseDao extends JpaRepository<Enterprise, String>, JpaSpe
 	 * @Date: ${DATE} ${TIME}
 	 * @Description:
 	 */
-	List<Enterprise> findByIsHot(String isHot);
+	List<Enterprise> findByIshot(String ishot);
 }
