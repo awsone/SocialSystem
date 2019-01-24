@@ -1,0 +1,9 @@
+#优先级较高，不经常改动的用户信息
+
+spring:
+  cloud:
+    config:
+      name: user   # - 前半部分
+      profile: dev  # - 后半部分
+      label: master  # 分支
+      uri: http://127.0.0.1:12000  #地址
