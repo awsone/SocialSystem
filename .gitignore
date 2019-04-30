@@ -47,3 +47,4 @@ tensquare_web/target/maven-status/
 tensquare_web/target/tensquare_web-1.0-SNAPSHOT.jar
 tenth_recruit/target/
 /.idea/modules.xml
+/.idea/compiler.xml
