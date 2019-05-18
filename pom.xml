@@ -5,13 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.tensquare</groupId>
-    <artifactId>tensquare_parent</artifactId>
+    <artifactId>SocialSystem</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>tensquare_common</module>
         <module>tensquare_base</module>
         <module>tensquare_qa</module>
         <module>tensquare_article</module>
+
+
         <module>tenth_recruit</module>
         <module>tensquare_gathering</module>
         <module>tensquare_spit</module>
@@ -29,7 +31,7 @@
     </modules>
     <packaging>pom</packaging>
 
-    <name>tensquare_parent</name>
+    <name>SocialSystem</name>
     <description>社交网络系统</description>
 
     <parent>

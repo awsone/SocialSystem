@@ -6,5 +6,5 @@ spring:
       name: base   # - 前半部分
       profile: dev  # - 后半部分
       label: master  # 分支
-      #uri: http://127.0.0.1:12000  #地址
-      uri: http://192.168.5.129:12000  #地址
+      uri: http://127.0.0.1:12000  #地址
+      #uri: http://192.168.5.129:12000  #地址
